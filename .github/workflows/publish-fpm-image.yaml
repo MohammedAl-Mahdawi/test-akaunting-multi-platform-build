@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publish FPM Docker image
 
 on:
   schedule:
