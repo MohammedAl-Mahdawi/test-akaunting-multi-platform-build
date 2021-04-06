@@ -19,7 +19,7 @@ jobs:
       - name: Define tags
         id: define-tag-name
         run: |
-          if [ "${GITHUB_REF}" == "refs/heads/master" -a "${GITHUB_EVENT_NAME}" != "pull_request" ]; then
+          if [ "${GITHUB_REF}" == "refs/heads/main" -a "${GITHUB_EVENT_NAME}" != "pull_request" ]; then
             curl -s https://api.github.com/repos/akaunting/akaunting/releases/latest \
               | jq -r .tag_name | sed \
             -e 's/^/::set-output name=tag::/'
@@ -30,7 +30,7 @@ jobs:
       - name: Define fpm image tags
         id: fpm-image-tags
         run: |
-          if [ "${GITHUB_REF}" == "refs/heads/master" -a "${GITHUB_EVENT_NAME}" != "pull_request" ]; then
+          if [ "${GITHUB_REF}" == "refs/heads/main" -a "${GITHUB_EVENT_NAME}" != "pull_request" ]; then
             echo ${{ steps.define-tag-name.outputs.tag }} | sed \
                 -e 's/\(\(\([0-9]\+\)\.[0-9]\+\)\.[0-9]\+\)/\1-fpm,\2-fpm,\3-fpm,/' \
                 -e 's/\([^,]\+\),/${{ secrets.DOCKERHUB_USERNAME }}\/test-akaunting-multi-platform-build:\1,/g' \
