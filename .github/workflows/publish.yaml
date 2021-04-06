@@ -49,4 +49,4 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/test-akaunting-multi-platform-build:2.1.9
-            ${{ secrets.DOCKERHUB_USERNAME }}/raw-laravel-for-testing:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/test-akaunting-multi-platform-build:latest
