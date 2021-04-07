@@ -13,12 +13,16 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        image: ['', fpm, fpm-alpine-nginx-composer]
+        image: ['', fpm, fpm-alpine, fpm-alpine-nginx, fpm-alpine-nginx-composer]
         include:
           - image: ''
             file: Dockerfile
           - image: fpm
             file: fpm.Dockerfile
+          - image: fpm-alpine
+            file: fpm-alpine.Dockerfile
+          - image: fpm-alpine-nginx
+            file: fpm-alpine-nginx.Dockerfile
           - image: fpm-alpine-nginx-composer
             file: fpm-alpine-nginx-composer.Dockerfile
     steps:
