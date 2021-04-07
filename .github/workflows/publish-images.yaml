@@ -1,0 +1,26 @@
+name: Publish Docker images
+
+on:
+  schedule:
+    - cron: '0 10 * * *' # everyday at 10am
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+jobs:
+  docker:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        image: ['', fpm]
+        include:
+          - image: ''
+            file: Dockerfile
+          - image: fpm
+            file: fpm.Dockerfile
+    steps:
+      - name: Image
+        run: echo ${{ matrix.image }}
+      - name: File
+        run: echo ${{ matrix.file }}
